@@ -13,6 +13,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import ServiceList from './components/serviceList';
+import AdminService from './components/AdminService';
 import { AuthProvider } from './context/AuthContext';
 
 import {
@@ -40,6 +41,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/serviceList" element={< ServiceList/>} />
+        <Route path='/AdminService'element={<AdminService/>}/>
         {/* <Route exact path="/Login" element={<Login />} /> */}
       </Routes>
     </Router>

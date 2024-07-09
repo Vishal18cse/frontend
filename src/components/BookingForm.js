@@ -12,14 +12,14 @@ const BookingForm = () => {
   });
 
   const [services, setServices] = useState([]);
-  const [loading,setLoading] = useState(true); 
+  // const [loading,setLoading] = useState(true); 
 
     useEffect(() => {
         const fetchServices = async () => {
             try {
                 const response = await axios.get('http://localhost:8000/api/services/');
                 setServices(response.data);
-                setLoading(false);
+                // setLoading(false);
             } catch (error) {
                 console.error('Error fetching services:', error);
             }
@@ -33,7 +33,7 @@ const BookingForm = () => {
 
   const [error, setError] = useState("");
 
-  const predefinedServices = ["Haircut", "Shave", "Facial", "Manicure", "Pedicure"];
+  // const predefinedServices = ["Haircut", "Shave", "Facial", "Manicure", "Pedicure"];
 
   const generateTimeSlots = () => {
     const times = [];
@@ -102,6 +102,7 @@ const BookingForm = () => {
         navigate("/success-page"); // Replace with your success page path
       })
       .catch((error) => {
+        setError("Slot are alreay filled!");
         console.error("Error booking appointment:", error);
       });
   };

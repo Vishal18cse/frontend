@@ -37,7 +37,7 @@ const AppointmentList = () => {
                     const hours = time.getHours();
                     const minutes = time.getMinutes();
                     const ampm = hours >= 12 ? 'PM' : 'AM';
-                    const hours12 = hours % 12 || 12; // Convert 0 to 12 for 12 AM
+                    const hours12 = hours % 12 || 12;
                     const minutesStr = minutes < 10 ? `0${minutes}` : minutes;
                     return `${hours12}:${minutesStr} ${ampm}`;
                 };
@@ -58,7 +58,7 @@ const AppointmentList = () => {
 
                 setAppointments(prevAppointments => prevAppointments.map(app => {
                     if (app.id === appointmentId) {
-                        return response.data; // Update the state with the updated appointment data
+                        return response.data;
                     }
                     return app;
                 }));
@@ -115,7 +115,7 @@ const renderChecklist = (appointment, toggleChecklistItemStatus) => {
                             className="mr-2"
                         />
                         <span className={item.done ? "line-through text-gray-500" : "text-gray-700"}>
-                            {item.text}
+                            {item.text.name} {/* Assuming the text object has a name property */}
                         </span>
                     </li>
                 ))}
