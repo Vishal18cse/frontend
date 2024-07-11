@@ -83,7 +83,7 @@ const AppointmentList = () => {
     return (
         <div className="container mx-auto mt-8 px-4">
             <h2 className="text-2xl font-bold text-center mb-4">Appointments</h2>
-            <ul className="list-none">
+            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {appointments.map(appointment => (
                     <li key={appointment.id} className="bg-gray-100 border border-gray-300 mb-4 p-4 rounded-lg shadow-md">
                         <p className="font-semibold">Customer: <span className="text-gray-700">{appointment.customer_name}</span></p>
@@ -98,7 +98,7 @@ const AppointmentList = () => {
 };
 
 const renderChecklist = (appointment, toggleChecklistItemStatus) => {
-    if (!appointment.checklist || !Array.isArray(appointment.checklist)) {
+    if (!appointment.checklist || !Array.isArray(appointment.checklist) || appointment.checklist.length === 0) {
         return <p className="text-gray-700 mt-2">No checklist items</p>;
     }
 

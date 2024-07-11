@@ -72,12 +72,12 @@ const AdminService = () => {
       {/* Add New Service */}
       <div className="mb-5">
         <h2 className="text-purple-500 text-2xl font-semibold mb-3">Add New Service</h2>
-        <div className="flex flex-wrap space-x-0 sm:space-x-2">
+        <div className="flex flex-wrap space-y-2 sm:space-y-0 sm:space-x-2">
           <input
             type="text"
             name="name"
             placeholder="Name"
-            className="form-input mt-1 block w-full sm:w-auto flex-grow rounded-md border-gray-300 shadow-sm"
+            className="form-input mt-1 block w-full sm:w-auto h-10 flex-grow rounded-md border-gray-300 shadow-sm"
             value={newService.name}
             onChange={handleInputChange}
           />
@@ -85,12 +85,12 @@ const AdminService = () => {
             type="number"
             name="price"
             placeholder="Price"
-            className="form-input mt-1 block w-full sm:w-auto flex-grow rounded-md border-gray-300 shadow-sm"
+            className="form-input mt-1 block w-full sm:w-auto h-10 flex-grow rounded-md border-gray-300 shadow-sm"
             value={newService.price}
             onChange={handleInputChange}
           />
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2 sm:mt-0"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full sm:w-auto mt-2 sm:mt-0"
             onClick={handleCreateService}
           >
             Add Service
@@ -102,7 +102,7 @@ const AdminService = () => {
       {editingService && (
         <div className="mb-5">
           <h2 className="text-purple-500 text-2xl font-semibold mb-3">Edit Service</h2>
-          <div className="flex flex-wrap space-x-0 sm:space-x-2">
+          <div className="flex flex-wrap space-y-2 sm:space-y-0 sm:space-x-2">
             <input
               type="text"
               name="name"
@@ -120,13 +120,13 @@ const AdminService = () => {
               onChange={handleEditInputChange}
             />
             <button
-              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2 sm:mt-0"
+              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full sm:w-auto mt-2 sm:mt-0"
               onClick={handleUpdateService}
             >
               Update Service
             </button>
             <button
-              className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mt-2 sm:mt-0"
+              className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded w-full sm:w-auto mt-2 sm:mt-0"
               onClick={() => setEditingService(null)}
             >
               Cancel
@@ -140,7 +140,7 @@ const AdminService = () => {
         <table className="min-w-full bg-white rounded-lg shadow-md">
           <thead className="bg-purple-100 text-violet-400">
             <tr>
-              <th className="py-2 px-4 border-b">ID</th>
+              {/* <th className="py-2 px-4 border-b">ID</th> */}
               <th className="py-2 px-4 border-b">Name</th>
               <th className="py-2 px-4 border-b">Price</th>
               <th className="py-2 px-4 border-b">Actions</th>
@@ -149,7 +149,7 @@ const AdminService = () => {
           <tbody>
             {services.map(service => (
               <tr key={service.id}>
-                <td className="py-2 px-4 border-b">{service.id}</td>
+                {/* <td className="py-2 px-4 border-b">{service.id}</td> */}
                 <td className="py-2 px-4 border-b">{service.name}</td>
                 <td className="py-2 px-4 border-b">{service.price}</td>
                 <td className="py-2 px-4 border-b">
