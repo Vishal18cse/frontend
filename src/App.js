@@ -14,6 +14,7 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import ServiceList from './components/serviceList';
 import AdminService from './components/AdminService';
+import AppointmentHistory from './components/AppointmentHistory';
 import { AuthProvider } from './context/AuthContext';
 
 import {
@@ -37,6 +38,7 @@ const App = () => {
         <Route exact path="/Book" element={<Book />} />
         <Route exact path="/BookingForm" element={<BookingForm />} />
         <Route exact path="/AppointmentList" element={<AppointmentList />} />
+        <Route exact path="/MyAppointment" element={<AppointmentHistory />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />

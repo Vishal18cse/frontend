@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { HairCuttingIcon, BeardShavingIcon, HairColouringIcon, HairStylingIcon, FacialTreatmentsIcon, ScalpTreatmentIcon, Logo } from "./Icons"; // Adjust the path as per your project structure
+import { HairCuttingIcon, BeardShavingIcon, HairColouringIcon, HairStylingIcon, FacialTreatmentsIcon, ScalpTreatmentIcon, Logo } from "./Icons"; 
+import '../styles/styles.css';
 
 const Home = () => {
   return (
@@ -9,7 +10,7 @@ const Home = () => {
       <section
         className="bg-cover bg-center h-screen"
         style={{
-          backgroundImage: "url(https://png.pngtree.com/background/20230610/original/pngtree-hair-salon-with-black-lighting-and-chandelier-picture-image_3105657.jpg)",
+          backgroundImage: "url('/images/home.jpg')",
           paddingTop: "5rem", // Added top padding to center content vertically
           paddingBottom: "5rem" // Added bottom padding for consistency
         }}
@@ -23,7 +24,7 @@ const Home = () => {
           </p>
           <Link
             to="/BookingForm"
-            className="bg-purple-500 hover:bg-purple-600 text-white py-3 px-8 rounded-lg text-lg mt-8 inline-block transition duration-300 ease-in-out transform hover:scale-105"
+            className="custom-button"
           >
             Book Now
           </Link>
@@ -68,12 +69,12 @@ const Home = () => {
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
             Ready to get started?
           </h2>
-          <p className="text-lg mb-8 leading-relaxed">
+          <p className="text-lg mb-0 leading-relaxed">
             Book your appointment now and experience our professional services.
           </p>
           <Link
             to="/booking"
-            className="bg-purple-500 hover:bg-purple-600 text-white py-3 px-8 rounded-lg text-lg inline-block transition duration-300 ease-in-out transform hover:scale-105"
+            className="custom-button"
           >
             Book Now
           </Link>
