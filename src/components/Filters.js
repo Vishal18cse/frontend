@@ -3,7 +3,7 @@ import React from 'react';
 const Filters = ({ filter, setFilter, resetFilters }) => {
     return (
         <div>
-            <ul className='flex flex-wrap space-x-2 md:space-x-5'>
+            <ul className='text-lg flex flex-wrap space-x-2 md:space-x-5'>
             <li>
             <div className="mb-4 flex space-x-3">
 

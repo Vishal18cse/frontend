@@ -1,7 +1,33 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import axios from 'axios';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [status, setStatus] = useState(null);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/api/contact/', formData);
+      setStatus({ type: 'success', message: response.data.message });
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      setStatus({ type: 'error', message: 'An error occurred. Please try again later.' });
+    }
+  };
+
   return (
     <div className="bg-gray-100 py-16">
       <section className="text-gray-600 body-font relative">
@@ -41,9 +67,9 @@ const Contact = () => {
                   <label htmlFor="email-info" className="leading-7 text-sm text-gray-700 font-medium">
                     Email
                   </label>
-                  <Link to="mailto:example@email.com" className="text-indigo-600 hover:underline text-lg">
+                  <a href="mailto:example@email.com" className="text-indigo-600 hover:underline text-lg">
                     example@email.com
-                  </Link>
+                  </a>
                 </div>
                 <div className="relative mb-4">
                   <label htmlFor="phone" className="leading-7 text-sm text-gray-700 font-medium">
@@ -66,7 +92,7 @@ const Contact = () => {
             {/* Contact Form */}
             <div className="lg:w-1/2 w-full">
               <h2 className="text-gray-900 text-3xl mb-6 font-bold title-font">Contact Form</h2>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="relative mb-4">
                   <label htmlFor="name" className="leading-7 text-md text-gray-700 font-medium">
                     Name
@@ -75,6 +101,8 @@ const Contact = () => {
                     type="text"
                     id="name"
                     name="name"
+                    value={formData.name}
+                    onChange={handleChange}
                     className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-teal-500 focus:bg-white focus:ring-2 focus:ring-teal-200 h-12 text-base outline-none text-gray-700 py-3 px-4 leading-8 transition-colors duration-200 ease-in-out"
                   />
                 </div>
@@ -86,6 +114,8 @@ const Contact = () => {
                     type="email"
                     id="email"
                     name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-teal-500 focus:bg-white focus:ring-2 focus:ring-teal-200 h-12 text-base outline-none text-gray-700 py-3 px-4 leading-8 transition-colors duration-200 ease-in-out"
                   />
                 </div>
@@ -97,6 +127,8 @@ const Contact = () => {
                     type="text"
                     id="subject"
                     name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
                     className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-teal-500 focus:bg-white focus:ring-2 focus:ring-teal-200 h-12 text-base outline-none text-gray-700 py-3 px-4 leading-8 transition-colors duration-200 ease-in-out"
                   />
                 </div>
@@ -107,12 +139,19 @@ const Contact = () => {
                   <textarea
                     id="message"
                     name="message"
+                    value={formData.message}
+                    onChange={handleChange}
                     className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-teal-500 focus:bg-white focus:ring-2 focus:ring-teal-200 h-40 text-base outline-none text-gray-700 py-3 px-4 resize-none leading-6 transition-colors duration-200 ease-in-out"
                   ></textarea>
                 </div>
-                <button className="text-white bg-teal-600 border-0 py-3 px-6 focus:outline-none hover:bg-teal-700 rounded text-lg font-semibold transition-colors duration-300 ease-in-out">
+                <button type="submit" className="text-white bg-teal-600 border-0 py-3 px-6 focus:outline-none hover:bg-teal-700 rounded text-lg font-semibold transition-colors duration-300 ease-in-out">
                   Send Message
                 </button>
+                {status && (
+                  <p className={`mt-4 text-lg ${status.type === 'success' ? 'text-green-600' : 'text-red-600'}`}>
+                    {status.message}
+                  </p>
+                )}
               </form>
             </div>
           </div>

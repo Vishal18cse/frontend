@@ -167,8 +167,8 @@ const AppointmentList = () => {
     }
 
     return (
-        <div className="container mx-auto mt-8 px-4">
-            <h2 className="text-2xl font-bold text-center mb-4">Appointments</h2>
+        <div className="container mx-auto mt-24 px-4">
+            <h2 className="text-4xl font-bold text-center mb-4">Appointments</h2>
 
             <Filters filter={filter} setFilter={setFilter} resetFilters={resetFilters} />
 

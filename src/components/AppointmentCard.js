@@ -6,7 +6,14 @@ const AppointmentCard = ({ appointment, toggleAppointmentStatus, toggleChecklist
         const time = new Date(`1970-01-01T${timeString}`);
         return time.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
     };
-    
+
+    // Capitalize the first letter of each word in the name
+    const capitalizeName = (name) => {
+        return name.split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .join(' ');
+    };
+
     // Format the appointment date
     const formatDate = (dateStr) => {
         const date = new Date(dateStr);
@@ -18,7 +25,7 @@ const AppointmentCard = ({ appointment, toggleAppointmentStatus, toggleChecklist
     };
 
     return (
-        <li className="bg-gray-100 border border-gray-300 mb-4 p-4 rounded-lg shadow-md relative">
+        <li className="text-lg bg-gray-100 border border-gray-300 mb-4 p-4 rounded-lg shadow-md relative">
             {/* Button Container */}
             <div className="absolute top-2 right-2">
                 <button
@@ -28,12 +35,12 @@ const AppointmentCard = ({ appointment, toggleAppointmentStatus, toggleChecklist
                     {appointment.status === 'done' ? 'Done' : 'Pending'}
                 </button>
             </div>
-            
+
             {/* Appointment Details */}
-            <p className="font-semibold">Customer: <span className="text-gray-700">{appointment.customer_name}</span></p>
-            <p className="font-semibold">Date: <span className="text-gray-700">{formatDate(appointment.appointment_date)}</span></p>
-            <p className="font-semibold">Time: <span className="text-gray-700">{formatTime(appointment.appointment_time)}</span></p>
-            
+            <p className="font-semibold">Customer : <span className="text-gray-700">{capitalizeName(appointment.customer_name)}</span></p>
+            <p className="font-semibold">Date : <span className="text-gray-700">{formatDate(appointment.appointment_date)}</span></p>
+            <p className="font-semibold">Time : <span className="text-gray-700">{formatTime(appointment.appointment_time)}</span></p>
+
             {/* Checklist */}
             <Checklist appointment={appointment} toggleChecklistItemStatus={toggleChecklistItemStatus} />
         </li>

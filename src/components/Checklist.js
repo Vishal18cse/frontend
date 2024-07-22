@@ -8,9 +8,9 @@ const Checklist = ({ appointment, toggleChecklistItemStatus }) => {
     return (
         <div className="mt-2">
             <p className="font-semibold">Checklist:</p>
-            <ul className="list-none grid grid-cols-2 gap-3 mt-2">
+            <ul className="list-none grid grid-cols-2 gap mt-2">
                 {appointment.checklist.map((item, index) => (
-                    <li key={index} className="flex items-center py-2">
+                    <li key={index} className="flex items-center py-1">
                         <input
                             type="checkbox"
                             checked={item.done}

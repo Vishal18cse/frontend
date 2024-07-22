@@ -25,7 +25,7 @@ const Price = () => {
 
   return (
     <div>
-      <section className="text-gray-600 body-font">
+      <section className="text-gray-600 body-font bg-gray-100">
         <div className="mb-12 mt-16">
           <div
             id="carouselExampleInterval"
@@ -82,7 +82,7 @@ const Price = () => {
           </div>
         </div>
 
-        <div className="text-center mb-8">
+        <div className="text-center mb-8 ">
           <h1 className="sm:text-4xl text-3xl font-medium title-font text-gray-900 mb-4">
             Services List
           </h1>

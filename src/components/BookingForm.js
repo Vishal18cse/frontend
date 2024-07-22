@@ -14,6 +14,7 @@ const BookingForm = () => {
     customer_name: '',
     appointment_date: '',
     appointment_time: '',
+    booking_date:'',
     checklist: [],
   });
 
@@ -119,6 +120,7 @@ const BookingForm = () => {
           customer_name: '',
           appointment_date: '',
           appointment_time: '',
+          booking_date:'',
           checklist: [],
         });
         setError('');
@@ -170,7 +172,7 @@ const BookingForm = () => {
             </ul>
 
       <div className="bg-gray-200 p-4">
-        <form className="mx-auto max-w-lg" onSubmit={handleSubmit}>
+        <form className="mx-auto max-w-lg bg-white shadow-lg rounded-lg p-8" onSubmit={handleSubmit}>
         <h2 className="text-4xl font-bold text-teal-600 mb-6">Book Appointment</h2>
 
           <div className="mb-4">
@@ -238,7 +240,7 @@ const BookingForm = () => {
           <div className="mb-4">
             <fieldset className="block">
               <legend className="block text-gray-700 font-medium">Select Services:</legend>
-              <div className="grid grid-cols-3 gap-3 mt-2">
+              <div className="grid grid-cols-2 gap-3 mt-2">
                 {services.map((service) => (
                   <div key={service.id} className="flex items-center custom-checkbox">
                     <input

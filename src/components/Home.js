@@ -32,7 +32,7 @@ const Home = () => {
       </section>
 
       {/* Services Section */}
-      <section className="text-gray-600 body-font bg-gray-100 py-24">
+      <section className="text-gray-600 body-font bg-gray-100 py-16">
         <div className="container px-5 mx-auto">
           <h2 className="text-3xl font-medium text-center text-gray-900 mb-16">Our Services</h2>
           <div className="flex flex-wrap -m-4">
