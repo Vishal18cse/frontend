@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link, Navigate, NavLink ,useNavigate } from "react-router-dom";
 import { Logo } from "./Icons.js";
+import { AuthContext } from "../context/AuthContext"; // Make sure to import your AuthContext
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate(); // Use context to get user and logout function
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -11,6 +14,21 @@ const Navbar = () => {
 
   const closeMenu = () => {
     setIsOpen(false);
+  };
+
+  let a, b;
+  if (user && user.id === 1) {
+    a = '/appointment-list';
+    b = 'Appointment List';
+  }
+  else {
+    a = '/myappointments';
+    b = 'My Appointments';
+  }
+  const handleLogout = () => {
+    logout(); // Call your logout function
+    closeMenu(); // Close the menu if needed
+    navigate('/'); // Redirect to the home page
   };
 
   return (
@@ -40,65 +58,112 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
-        <nav
-        className={`md:flex md:items-center md:ml-auto md:mr-0 w-full md:w-auto ${isOpen ? 'block' : 'hidden'}`}
-        >
-          <Link
-            className="block md:inline-block p-2 md:mt-0  mr-5 hover:text-violet-400 text-white text-base md:text-xl"
-            to="/"
-            onClick={closeMenu}
+        <nav className={`md:flex md:items-center md:ml-auto md:mr-0 w-full md:w-auto ${isOpen ? 'block' : 'hidden'}`}>
+          {/* home */}
+          <NavLink
+             to="/"
+            className={({ isActive }) =>
+              `block md:inline-block p-2 md:mt-0 mr-5 text-xl md:text-xl hover:text-teal-400 ${isActive ? 'text-teal-400' : 'text-white'
+              }`
+
+            }
           >
             Home
-          </Link>
-          <Link
-            className="block md:inline-block p-2 md:mt-0 mr-5 hover:text-violet-400 text-white text-base md:text-xl"
-            to="/Price"
-            onClick={closeMenu}
+          </NavLink>
+          {/* Services */}
+          <NavLink
+             to="/services"
+            className={({ isActive }) =>
+              `block md:inline-block p-2 md:mt-0 mr-5 text-xl md:text-xl hover:text-teal-400 ${isActive ? 'text-teal-400' : 'text-white'
+              }`
+            }
           >
-            Price
-          </Link>
-          <Link
-            className="block md:inline-block p-2 md:mt-0 mr-5 hover:text-violet-400 text-white text-base md:text-xl"
-            to="/BookingForm"
-            onClick={closeMenu}
+            Services
+          </NavLink>
+          {/* Book Appointment */}
+          <NavLink
+             to="/book-appointment"
+            className={({ isActive }) =>
+              `block md:inline-block p-2 md:mt-0 mr-5 text-xl md:text-xl hover:text-teal-400 ${isActive ? 'text-teal-400' : 'text-white'
+              }`
+            }
           >
-            Book Now
-          </Link>
-          <Link
-            className="block md:inline-block p-2 md:mt-0 mr-5 hover:text-violet-400 text-white text-base md:text-xl"
-            to="/Contact"
-            onClick={closeMenu}
-          >
-            Contact Us
-          </Link>
-          <Link
-            className="block md:inline-block p-2 md:mt-0 mr-5 hover:text-violet-400 text-white text-base md:text-xl"
-            to="/About"
-            onClick={closeMenu}
-          >
-            About
-          </Link>
-          <Link
-            className="block md:inline-block p-2 md:mt-0 mr-5 hover:text-violet-400 text-white text-base md:text-xl"
-            to="/Login"
-            onClick={closeMenu}
-          >
-            Admin Login
-          </Link>
-          <Link
-            className="block md:inline-block p-2 md:mt-0 mr-5 hover:text-violet-400 text-white text-base md:text-xl"
-            to="/AppointmentList"
-            onClick={closeMenu}
-          >
-            AppointmentList
-          </Link>
-          <Link
-            className="block md:inline-block p-2 md:mt-0 mr-5 hover:text-violet-400 text-white text-base md:text-xl"
-            to="/MyAppointment"
-            onClick={closeMenu}
-          >
-            My Apointments
-          </Link>
+            Book Appointment
+          </NavLink>
+          {/* Appointment List / My Appointment */}
+          {user && (
+            <NavLink
+               to={a}
+              className={({ isActive }) =>
+                `block md:inline-block p-2 md:mt-0 mr-5 text-xl md:text-xl hover:text-teal-400 ${isActive ? 'text-teal-400' : 'text-white'
+                }`
+              }
+            >
+              {b}
+            </NavLink>
+          )}
+          {/* About US and Contact Us */}
+          {user?.id !== 1 && (
+            <>
+              <NavLink
+                 to="/about-us"
+                className={({ isActive }) =>
+                  `block md:inline-block p-2 md:mt-0 mr-5 text-xl md:text-xl hover:text-teal-400 ${isActive ? 'text-teal-400' : 'text-white'
+                  }`
+                }
+              >
+                About Us
+              </NavLink>
+
+              <NavLink
+                 to="/contact-us"
+                className={({ isActive }) =>
+                  `block md:inline-block p-2 md:mt-0 mr-5 text-xl md:text-xl hover:text-teal-400 ${isActive ? 'text-teal-400' : 'text-white'
+                  }`
+                }
+              >
+                Contact Us
+              </NavLink>
+            </>
+          )}
+          {/* Admin Pannel */}
+          {user?.id === 1 && <>
+            <NavLink
+               to="/admin-panel"
+              className={({ isActive }) =>
+                `block md:inline-block p-2 md:mt-0 mr-5 text-xl md:text-xl hover:text-teal-400 ${isActive ? 'text-teal-400' : 'text-white'
+                }`
+              }
+            >
+              Admin Panel
+            </NavLink>
+          </>}
+          {/* Login and Signup */}
+          {!user ? (
+            <>
+              <Link
+                className="block md:inline-block p-2 md:mt-0 mr-5 hover:text-violet-400 text-white text-xl md:text-xl"
+                to="/login"
+                onClick={closeMenu}
+              >
+                Login
+              </Link>
+              <Link
+                className="block md:inline-block p-2 md:mt-0 mr-5 hover:text-violet-400 text-white text-xl md:text-xl"
+                to="/signup"
+                onClick={closeMenu}
+              >
+                Signup
+              </Link>
+            </>
+          ) : (
+            <button
+              className="block md:inline-block p-2 md:mt-0 mr-5 hover:text-violet-400 text-white text-xl md:text-xl"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          )}
         </nav>
       </div>
     </header>

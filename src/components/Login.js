@@ -3,6 +3,7 @@ import React, { useState, useContext } from 'react';
 import api from '../services/api';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import {Logo} from "./Icons"; 
 
 const Login = () => {
     const navigate = useNavigate();
@@ -16,6 +17,7 @@ const Login = () => {
             const response = await api.login(username, password);
             login(response.data);
             console.log('Logged in successfully:', response.data);
+            navigate('/');
         } catch (error) {
             console.error('Login error:', error);
         }
@@ -29,7 +31,7 @@ const Login = () => {
                         className="text-white text-xl flex items-center"
                         onClick={() => navigate(-1)}
                     >
-                        <svg
+                      <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"
                             width="30"
@@ -54,8 +56,8 @@ const Login = () => {
                 <div className="w-full max-w-md p-8 bg-white shadow-lg rounded-lg">
                     <div className="text-center mb-6">
                         <img
-                            className="mx-auto h-12 w-auto mb-4"
-                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                            className="mx-auto h-12 w-auto mb-4 "
+                            src="/images/logo.svg"
                             alt="Your Barbershop"
                         />
                         <h2 className="text-3xl font-extrabold text-gray-900">Welcome Back!</h2>
@@ -106,7 +108,7 @@ const Login = () => {
                     <div className="mt-6 text-center">
                         <p className="text-sm text-gray-600">
                             Don't have an account? 
-                            <Link to="/register" className="font-semibold text-teal-600 hover:text-teal-700"> Sign up</Link>
+                            <Link to="/signup" className="font-semibold text-teal-600 hover:text-teal-700"> Sign up</Link>
                         </p>
                     </div>
                 </div>

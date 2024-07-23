@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { HairCuttingIcon, BeardShavingIcon, HairColouringIcon, HairStylingIcon, FacialTreatmentsIcon, ScalpTreatmentIcon, Logo } from "./Icons"; 
 import '../styles/styles.css';
 
+
 const Home = () => {
   return (
     <div>
@@ -15,26 +16,27 @@ const Home = () => {
           paddingBottom: "5rem" // Added bottom padding for consistency
         }}
       >
-        <div className="flex flex-col justify-center items-center h-full text-center text-white py-24">
-          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight italic">
-            RECLAIM YOUR CONFIDENCE
-          </h1>
-          <p className="mt-6 text-lg sm:text-xl leading-relaxed">
-            We show your skin, hair, and body the care and attention they deserve. Your hair is a reflection of your personality, and we know how to bring out the real you. Let our professionals cut, shave, and color your hair to complement your facial features with a personal touch.
-          </p>
-          <Link
-            to="/BookingForm"
-            className="custom-button"
-          >
-            Book Now
-          </Link>
-        </div>
+        <div className="flex flex-col justify-center items-center h-full text-center text-white py-24 px-4 sm:px-8">
+  <h1 className="text-4xl sm:text-6xl font-bold tracking-tight italic mb-6">
+    RECLAIM YOUR CONFIDENCE
+  </h1>
+  <p className="text-lg sm:text-xl leading-relaxed max-w-4xl mb-8">
+    We show your skin, hair, and body the care and attention they deserve. Your hair is a reflection of your personality, and we know how to bring out the real you. Let our professionals cut, shave, and color your hair to complement your facial features with a personal touch.
+  </p>
+  <Link
+    to="/book-appointment"
+    className="bg-teal-700 text-white py-3 px-8 rounded-lg text-lg mt-8 inline-block transition duration-300 ease-in-out transform hover:bg-teal-600 hover:scale-105 shadow-lg"
+  >
+    Book Appointment
+  </Link>
+</div>
+
       </section>
 
       {/* Services Section */}
       <section className="text-gray-600 body-font bg-gray-100 py-16">
         <div className="container px-5 mx-auto">
-          <h2 className="text-3xl font-medium text-center text-gray-900 mb-16">Our Services</h2>
+          <h2 className="text-3xl font-semibold text-center text-gray-900 mb-16">Our Services</h2>
           <div className="flex flex-wrap -m-4">
             {/* Service Cards */}
             {services.map((service, index) => (
@@ -47,7 +49,7 @@ const Home = () => {
       {/* Gallery Section */}
       <section className="text-gray-600 body-font py-24 bg-gray-200">
         <div className="container px-5 mx-auto">
-          <h2 className="text-3xl font-medium text-center text-gray-900 mb-16">Photo Gallery</h2>
+          <h2 className="text-3xl font-semibold text-center text-gray-900 mb-16">Photo Gallery</h2>
           <div className="flex flex-wrap -m-4">
             {/* Gallery Images */}
             {galleryImages.map((image, index) => (
@@ -73,8 +75,8 @@ const Home = () => {
             Book your appointment now and experience our professional services.
           </p>
           <Link
-            to="/booking"
-            className="custom-button"
+            to="/book-appointment"
+            className="bg-teal-700 text-white py-3 px-8 rounded-lg text-lg mt-8 inline-block transition duration-300 ease-in-out transform hover:bg-teal-600 hover:scale-105"
           >
             Book Now
           </Link>
@@ -101,6 +103,7 @@ const Home = () => {
           </p>
           <div className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
             {socialLinks.map((social, index) => (
+              
               <SocialIcon key={index} link={social.link} icon={social.icon} />
             ))}
           </div>
@@ -232,7 +235,7 @@ const ServiceCard = ({ service }) => {
           <div className="flex items-center justify-center mb-4">
             {service.icon}
           </div>
-          <h2 className="text-lg tracking-widest font-medium text-gray-900 mb-3">
+          <h2 className="service-heading text-lg tracking-widest font-semibold text-gray-900 mb-3">
             {service.title}
           </h2>
           <p className="leading-relaxed text-base text-gray-700 mb-3">
@@ -243,6 +246,7 @@ const ServiceCard = ({ service }) => {
     </div>
   );
 };
+
 
 // SocialIcon component for rendering each social media icon
 const SocialIcon = ({ link, icon }) => {

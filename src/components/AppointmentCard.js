@@ -1,5 +1,5 @@
 import React from 'react';
-import Checklist from './Checklist';
+import AppointmentChecklist from './AppointmentChecklist';
 
 const AppointmentCard = ({ appointment, toggleAppointmentStatus, toggleChecklistItemStatus }) => {
     const formatTime = (timeString) => {
@@ -25,11 +25,11 @@ const AppointmentCard = ({ appointment, toggleAppointmentStatus, toggleChecklist
     };
 
     return (
-        <li className="text-lg bg-gray-100 border border-gray-300 mb-4 p-4 rounded-lg shadow-md relative">
+        <li className="text-lg bg-gray-100 border border-gray-300 mb-4 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow relative">
             {/* Button Container */}
             <div className="absolute top-2 right-2">
                 <button
-                    className={`p-2 border border-gray-300 rounded-md ${appointment.status === 'done' ? 'bg-green-300' : 'bg-yellow-300'}`}
+                    className={`p-2 border border-gray-300 rounded-md ${appointment.status === 'done' ? 'bg-green-300 hover:bg-green-400' : 'bg-yellow-300 hover:bg-yellow-400'}`}
                     onClick={() => toggleAppointmentStatus(appointment.id)}
                 >
                     {appointment.status === 'done' ? 'Done' : 'Pending'}
@@ -42,7 +42,7 @@ const AppointmentCard = ({ appointment, toggleAppointmentStatus, toggleChecklist
             <p className="font-semibold">Time : <span className="text-gray-700">{formatTime(appointment.appointment_time)}</span></p>
 
             {/* Checklist */}
-            <Checklist appointment={appointment} toggleChecklistItemStatus={toggleChecklistItemStatus} />
+            <AppointmentChecklist appointment={appointment} toggleChecklistItemStatus={toggleChecklistItemStatus} />
         </li>
     );
 };

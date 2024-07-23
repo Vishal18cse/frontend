@@ -47,7 +47,7 @@ const Filters = ({ filter, setFilter, resetFilters }) => {
             <div className="mb-4 flex items-center space-x-3">
 
                 <button
-                    className={`p-2 border border-gray-300 rounded-md ${filter.status === 'pending' ? 'bg-yellow-300' : ''}`}
+                    className={`p-2 border border-gray-300 rounded-md ${filter.status === 'pending' ? 'bg-yellow-300 ' : ''}`}
                     onClick={() => setFilter({ ...filter, status: 'pending' })}
                 >
                     Pending
@@ -61,7 +61,7 @@ const Filters = ({ filter, setFilter, resetFilters }) => {
                 </button>
 
                 <button
-                    className="p-2 bg-teal-500 text-white rounded-md"
+                    className="p-2 bg-teal-500 text-white rounded-md hover:bg-teal-600"
                     onClick={resetFilters}
                 >
                     Reset Filters
